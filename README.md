@@ -4,8 +4,6 @@
 for Open Source repositories. This document contains information on making it
 work well for [Go](https://github.com/features/actions).
 
-### Quickstart
-
 ```
 $ cat .github/workflows/test.yml
 on: [push, pull_request]
@@ -28,7 +26,7 @@ jobs:
       run: go test ./...
 ```
 
-### Summary
+## Summary
 
 Each workflow file has a number of jobs, which get run `on` specified events.
 
@@ -38,15 +36,15 @@ versions on three operating systems.
 Each job has a number of steps, such as installing Go, or checking out the
 repository's code.
 
-### FAQs
+## FAQs
 
-##### What about module support?
+#### What about module support?
 
 If your repository contains a `go.mod` file, Go 1.12 and later will already use
 module mode by default. To turn it on explicitly, set `GO111MODULE=on`. To use
 `GOPATH` mode, you'd need `$GOPATH/src/your/pkg/name` and `GO111MODULE=off`.
 
-##### How do I set environent variables?
+#### How do I set environent variables?
 
 They can only be set for each step, as far as the documentation covers:
 
@@ -64,12 +62,12 @@ On Go 1.13 and later, this can be simplified:
   run: go env -w GOPROXY="https://proxy.golang.org"
 ```
 
-##### How do I set up caching between builds?
+#### How do I set up caching between builds?
 
 We haven't been able to find a simple way to accomplish this. It would be useful
 to persist Go's module download and build caches.
 
-##### How do I run a step conditionally?
+#### How do I run a step conditionally?
 
 You can use `if` conditionals, using their [custom expression
 language](https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions):
@@ -80,7 +78,7 @@ language](https://help.github.com/en/articles/contexts-and-expression-syntax-for
   run: go run ./endtoend
 ```
 
-##### How do I run multiline scripts?
+#### How do I run multiline scripts?
 
 ```
 - name: Series of commands
@@ -89,15 +87,13 @@ language](https://help.github.com/en/articles/contexts-and-expression-syntax-for
     go test -race ./...
 ```
 
-##### Should I use two workflows, or two jobs on one workflow?
+#### Should I use two workflows, or two jobs on one workflow?
 
 As far as we can tell, the only differences are in the UI and in how each
 workflow can be triggered on a different set of events. Otherwise, there doesn't
 seem to be a difference.
 
-##### Should I use two workflows, or two jobs on one workflow?
-
-### Quick links
+## Quick links
 
 * Concepts, rate limits, joining the beta, etc: https://help.github.com/en/articles/about-github-actions
 
@@ -107,7 +103,7 @@ seem to be a difference.
 
 * To report bugs: https://github.community/t5/GitHub-Actions/bd-p/actions
 
-### Known bugs
+## Known bugs
 
 * https://github.com/actions/setup-go/issues/16
 
