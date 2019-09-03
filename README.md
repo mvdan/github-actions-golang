@@ -42,6 +42,12 @@ code are the essential ones.
 
 ### FAQs
 
+##### What about module support?
+
+If your repository contains a `go.mod` file, Go 1.12 and later will already use
+module mode by default. To turn it on explicitly, set `GO111MODULE=on`. To use
+`GOPATH` mode, you'd need `GOPATH/src/your/pkg/name` and `GO111MODULE=off`.
+
 ##### How do I set environent variables?
 
 They can only be set for each step, as far as the documentation covers:
@@ -51,6 +57,13 @@ They can only be set for each step, as far as the documentation covers:
   env:
     GOPROXY: "https://proxy.golang.org"
   run: go mod download
+```
+
+On Go 1.13 and later, this can be simplified:
+
+```
+- name: Set Go env vars
+  run: go env -w GOPROXY="https://proxy.golang.org"
 ```
 
 ##### How do I set up caching between builds?
@@ -73,15 +86,23 @@ Windows defaults to `cmd` as its shell.
     go test -race ./...
 ```
 
+##### Should I use two workflows, or two jobs on one workflow?
+
+As far as we can tell, the only differences are in the UI and in how each
+workflow can be triggered on a different set of events. Otherwise, there doesn't
+seem to be a difference.
+
+##### Should I use two workflows, or two jobs on one workflow?
+
 ### Quick links
 
-* To report bugs: https://github.community/t5/GitHub-Actions/bd-p/actions
-
-* Environment reference: https://help.github.com/en/articles/virtual-environments-for-github-actions
+* Concepts, rate limits, joining the beta, etc: https://help.github.com/en/articles/about-github-actions
 
 * Syntax and fields reference: https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-* Concepts, rate limits, joining the beta, etc: https://help.github.com/en/articles/about-github-actions
+* Environment reference: https://help.github.com/en/articles/virtual-environments-for-github-actions
+
+* To report bugs: https://github.community/t5/GitHub-Actions/bd-p/actions
 
 ### Known bugs
 
