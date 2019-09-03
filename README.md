@@ -44,7 +44,7 @@ repository's code.
 
 If your repository contains a `go.mod` file, Go 1.12 and later will already use
 module mode by default. To turn it on explicitly, set `GO111MODULE=on`. To use
-`GOPATH` mode, you'd need `GOPATH/src/your/pkg/name` and `GO111MODULE=off`.
+`GOPATH` mode, you'd need `$GOPATH/src/your/pkg/name` and `GO111MODULE=off`.
 
 ##### How do I set environent variables?
 
@@ -108,6 +108,18 @@ seem to be a difference.
 * To report bugs: https://github.community/t5/GitHub-Actions/bd-p/actions
 
 ### Known bugs
+
+* https://github.com/actions/setup-go/issues/16
+
+The `setup-go` action can runs into rate limits when using "latest" versions
+such as `1.12.x`. To work around this issue, specify exact Go versions like
+`1.12.9`.
+
+* https://github.com/actions/setup-go/issues/14
+
+The `setup-go` action doesn't set `PATH`, so currently it's not possible to `go
+install` a program and run it directly. Until that's fixed, consider absolute
+paths like `$(go env GOPATH)/bin/program`.
 
 * https://github.community/t5/GitHub-Actions/git-config-core-autocrlf-should-default-to-false/m-p/30445
 
