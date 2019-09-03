@@ -7,6 +7,7 @@ work well for [Go](https://github.com/features/actions).
 ### Quickstart
 
 ```
+$ cat .github/workflows/test.yml
 on: [push, pull_request]
 name: Test
 jobs:
@@ -29,16 +30,13 @@ jobs:
 
 ### Summary
 
-Each YAML file under `.github/workflows/` is a separate workflow to run on a
-series of events specified by `on`. `name` is its human readable name.
-
-Each workflow file has a number of jobs.
+Each workflow file has a number of jobs, which get run `on` specified events.
 
 Each job runs on a configuration matrix. For example, we can test two major Go
-versions on the three major operating systems.
+versions on three operating systems.
 
-Each job has a number of steps. Installing Go and checking out the repository's
-code are the essential ones.
+Each job has a number of steps, such as installing Go, or checking out the
+repository's code.
 
 ### FAQs
 
