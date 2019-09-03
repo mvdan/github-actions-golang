@@ -71,11 +71,16 @@ On Go 1.13 and later, this can be simplified:
 We haven't been able to find a simple way to accomplish this. It would be useful
 to persist Go's module download and build caches.
 
-##### How do I run a step only on one platform?
+##### How do I run a step conditionally?
 
-There doesn't seem to be an `on` or `when` field for separate steps. Script
-logic like `if [[ $GITHUB_VAR == "foo" ]]; then ...` is possible, but note that
-Windows defaults to `cmd` as its shell.
+You can use `if` conditionals, using their [custom expression
+language](https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions):
+
+```
+- name: Run end-to-end tests
+  if: github.event_name == 'push'
+  run: go run ./endtoend
+```
 
 ##### How do I run multiline scripts?
 
