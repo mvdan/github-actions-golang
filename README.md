@@ -12,7 +12,7 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.11.9, 1.12.9]
+        go-version: [1.12.9, 1.13]
         platform: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
@@ -49,9 +49,9 @@ module mode by default. To turn it on explicitly, set `GO111MODULE=on`. To use
 They can only be set for each step, as far as the documentation covers:
 
 ```
-- name: Download Go dependencies with the module proxy
+- name: Download Go dependencies with a custom proxy
   env:
-    GOPROXY: "https://proxy.golang.org"
+    GOPROXY: "https://proxy.company.com"
   run: go mod download
 ```
 
@@ -59,7 +59,7 @@ On Go 1.13 and later, this can be simplified:
 
 ```
 - name: Set Go env vars
-  run: go env -w GOPROXY="https://proxy.golang.org"
+  run: go env -w GOPROXY="https://proxy.company.com"
 ```
 
 #### How do I set up caching between builds?
