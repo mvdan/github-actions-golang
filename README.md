@@ -73,8 +73,8 @@ You can use `if` conditionals, using their [custom expression
 language](https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions):
 
 ```
-- name: Run end-to-end tests
-  if: github.event_name == 'push'
+- name: Run end-to-end tests on Linux
+  if: github.event_name == 'push' && matrix.platform == 'ubuntu-latest'
   run: go run ./endtoend
 ```
 
@@ -92,6 +92,19 @@ language](https://help.github.com/en/articles/contexts-and-expression-syntax-for
 As far as we can tell, the only differences are in the UI and in how each
 workflow can be triggered on a different set of events. Otherwise, there doesn't
 seem to be a difference.
+
+#### How do I set up a secret environment variable?
+
+Follow [these steps](https://help.github.com/en/articles/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables)
+to set up the secret in the repo's settings. After adding a secret like
+`FOO_SECRET`, use it on a step as follows:
+
+```
+- name: Command that requires secret
+  run: some-command
+  env:
+    FOO_SECRET: ${{ secrets.FOO_SECRET }}
+```
 
 ## Quick links
 
