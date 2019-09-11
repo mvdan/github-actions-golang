@@ -79,7 +79,7 @@ It's possible to install modules from private GitHub repositories without using 
 - name: Configure git for private modules
   env:
     TOKEN: ${{ secrets.MY_GITHUB_ACCESS_TOKEN }}
-  run: git config --global url."https://services-ci:${TOKEN}@github.com".insteadOf "https://github.com"
+  run: git config --global url."https://YOUR_GITHUB_USERNAME:${TOKEN}@github.com".insteadOf "https://github.com"
 ```
 
 #### How do I run a step conditionally?
