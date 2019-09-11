@@ -2,7 +2,8 @@
 
 [GitHub Actions](https://github.com/features/actions) includes CI/CD for free
 for Open Source repositories. This document contains information on making it
-work well for [Go](https://github.com/features/actions).
+work well for [Go](https://github.com/features/actions). See them [in
+action](https://github.com/mvdan/github-actions-golang/actions):
 
 ```
 $ cat .github/workflows/test.yml
@@ -151,6 +152,17 @@ following `.gitattributes`:
 ```
 * -text
 ```
+
+- https://github.community/t5/GitHub-Actions/TEMP-is-broken-on-Windows/m-p/30432/thread-id/427
+
+* https://github.community/t5/GitHub-Actions/LocalAppData-unset-on-Windows-when-using-Actions-for-CI/m-p/31349
+
+`GOCACHE` won't be accessible on Windows by default, since `%LocalAppData%`
+isn't defined. To temporarily work around the error below, set `GOCACHE`
+manually:
+
+> build cache is required, but could not be located: GOCACHE is not defined and
+> %LocalAppData% is not defined
 
 - https://github.community/t5/GitHub-Actions/TEMP-is-broken-on-Windows/m-p/30432/thread-id/427
 
