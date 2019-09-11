@@ -122,28 +122,29 @@ to set up the secret in the repo's settings. After adding a secret like
 
 ## Quick links
 
-- Concepts, rate limits, joining the beta, etc: https://help.github.com/en/articles/about-github-actions
+* Concepts, rate limits, joining the beta, etc: https://help.github.com/en/articles/about-github-actions
 
-- Syntax and fields reference: https://help.github.com/en/articles/workflow-syntax-for-github-actions
+* Syntax and fields reference: https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-- Environment reference: https://help.github.com/en/articles/virtual-environments-for-github-actions
+* Environment reference: https://help.github.com/en/articles/virtual-environments-for-github-actions
 
-- To report bugs: https://github.community/t5/GitHub-Actions/bd-p/actions
+* To report bugs: https://github.community/t5/GitHub-Actions/bd-p/actions
 
 ## Known bugs
 
-- https://github.com/actions/setup-go/issues/16
+* https://github.com/actions/setup-go/issues/16
 
 The `setup-go` action can runs into rate limits when using "latest" versions
 such as `1.12.x`. To work around this issue, specify exact Go versions like
 `1.12.9`.
 
-- https://github.com/actions/setup-go/issues/14
+* https://github.com/actions/setup-go/issues/14
 
-The `setup-go` action doesn't set `PATH`, so currently it's not possible to `go install` a program and run it directly. Until that's fixed, consider absolute
+The `setup-go` action doesn't set `PATH`, so currently it's not possible to `go
+install` a program and run it directly. Until that's fixed, consider absolute
 paths like `$(go env GOPATH)/bin/program`.
 
-- https://github.community/t5/GitHub-Actions/git-config-core-autocrlf-should-default-to-false/m-p/30445
+* https://github.community/t5/GitHub-Actions/git-config-core-autocrlf-should-default-to-false/m-p/30445
 
 `git config core.autocrlf` defaults to true, so be careful about CRLF endings in
 your plaintext `testdata` files on Windows. To work around this, set up the
@@ -152,8 +153,6 @@ following `.gitattributes`:
 ```
 * -text
 ```
-
-- https://github.community/t5/GitHub-Actions/TEMP-is-broken-on-Windows/m-p/30432/thread-id/427
 
 * https://github.community/t5/GitHub-Actions/LocalAppData-unset-on-Windows-when-using-Actions-for-CI/m-p/31349
 
@@ -164,7 +163,7 @@ manually:
 > build cache is required, but could not be located: GOCACHE is not defined and
 > %LocalAppData% is not defined
 
-- https://github.community/t5/GitHub-Actions/TEMP-is-broken-on-Windows/m-p/30432/thread-id/427
+* https://github.community/t5/GitHub-Actions/TEMP-is-broken-on-Windows/m-p/30432/thread-id/427
 
 `os.TempDir` on Windows will contain a short name, since `%TEMP%` also contains
 it. Note that case sensitivity doesn't matter, and that `os.Open` should still
