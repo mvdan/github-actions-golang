@@ -141,6 +141,15 @@ following `.gitattributes`:
 * -text
 ```
 
+* https://github.community/t5/GitHub-Actions/LocalAppData-unset-on-Windows-when-using-Actions-for-CI/m-p/31349
+
+`GOCACHE` won't be accessible on Windows by default, since `%LocalAppData%`
+isn't defined. To temporarily work around the error below, set `GOCACHE`
+manually:
+
+> build cache is required, but could not be located: GOCACHE is not defined and
+> %LocalAppData% is not defined
+
 * https://github.community/t5/GitHub-Actions/TEMP-is-broken-on-Windows/m-p/30432/thread-id/427
 
 `os.TempDir` on Windows will contain a short name, since `%TEMP%` also contains
