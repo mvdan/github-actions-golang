@@ -62,25 +62,23 @@ On Go 1.13 and later, this can be simplified:
   run: go env -w GOPROXY="https://proxy.company.com"
 ```
 
-#### How do I set up caching between builds?
-
-We haven't been able to find a simple way to accomplish this. It would be useful
-to persist Go's module download and build caches.
-
 #### How do I install private modules?
 
-It's possible to install modules from private GitHub repositories without using your own proxy.
-
-1. [Create a personal access token](https://github.com/settings/tokens)
-2. Add the access token to your repository as a secret
-3. Add the following step before `go mod download`
+It's possible to install modules from private GitHub repositories without using
+your own proxy. You'll need to create a
+[personal access token](https://github.com/settings/tokens) for this to work.
 
 ```yaml
 - name: Configure git for private modules
   env:
-    TOKEN: ${{ secrets.MY_GITHUB_ACCESS_TOKEN }}
+    TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
   run: git config --global url."https://YOUR_GITHUB_USERNAME:${TOKEN}@github.com".insteadOf "https://github.com"
 ```
+
+#### How do I set up caching between builds?
+
+We haven't been able to find a simple way to accomplish this. It would be useful
+to persist Go's module download and build caches.
 
 #### How do I run a step conditionally?
 
@@ -123,29 +121,28 @@ to set up the secret in the repo's settings. After adding a secret like
 
 ## Quick links
 
-* Concepts, rate limits, joining the beta, etc: https://help.github.com/en/articles/about-github-actions
+- Concepts, rate limits, joining the beta, etc: https://help.github.com/en/articles/about-github-actions
 
-* Syntax and fields reference: https://help.github.com/en/articles/workflow-syntax-for-github-actions
+- Syntax and fields reference: https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-* Environment reference: https://help.github.com/en/articles/virtual-environments-for-github-actions
+- Environment reference: https://help.github.com/en/articles/virtual-environments-for-github-actions
 
-* To report bugs: https://github.community/t5/GitHub-Actions/bd-p/actions
+- To report bugs: https://github.community/t5/GitHub-Actions/bd-p/actions
 
 ## Known bugs
 
-* https://github.com/actions/setup-go/issues/16
+- https://github.com/actions/setup-go/issues/16
 
 The `setup-go` action can runs into rate limits when using "latest" versions
 such as `1.12.x`. To work around this issue, specify exact Go versions like
 `1.12.9`.
 
-* https://github.com/actions/setup-go/issues/14
+- https://github.com/actions/setup-go/issues/14
 
-The `setup-go` action doesn't set `PATH`, so currently it's not possible to `go
-install` a program and run it directly. Until that's fixed, consider absolute
+The `setup-go` action doesn't set `PATH`, so currently it's not possible to `go install` a program and run it directly. Until that's fixed, consider absolute
 paths like `$(go env GOPATH)/bin/program`.
 
-* https://github.community/t5/GitHub-Actions/git-config-core-autocrlf-should-default-to-false/m-p/30445
+- https://github.community/t5/GitHub-Actions/git-config-core-autocrlf-should-default-to-false/m-p/30445
 
 `git config core.autocrlf` defaults to true, so be careful about CRLF endings in
 your plaintext `testdata` files on Windows. To work around this, set up the
@@ -155,7 +152,7 @@ following `.gitattributes`:
 * -text
 ```
 
-* https://github.community/t5/GitHub-Actions/TEMP-is-broken-on-Windows/m-p/30432/thread-id/427
+- https://github.community/t5/GitHub-Actions/TEMP-is-broken-on-Windows/m-p/30432/thread-id/427
 
 `os.TempDir` on Windows will contain a short name, since `%TEMP%` also contains
 it. Note that case sensitivity doesn't matter, and that `os.Open` should still
