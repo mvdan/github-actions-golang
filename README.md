@@ -67,6 +67,21 @@ On Go 1.13 and later, this can be simplified:
 We haven't been able to find a simple way to accomplish this. It would be useful
 to persist Go's module download and build caches.
 
+#### How do I install private modules?
+
+It's possible to install modules from private GitHub repositories without using your own proxy.
+
+1. [Create a personal access token](https://github.com/settings/tokens)
+2. Add the access token to your repository as a secret
+3. Add the following step before `go mod download`
+
+```yaml
+- name: Configure git for private modules
+  env:
+    TOKEN: ${{ secrets.MY_GITHUB_ACCESS_TOKEN }}
+  run: git config --global url."https://services-ci:${TOKEN}@github.com".insteadOf "https://github.com"
+```
+
 #### How do I run a step conditionally?
 
 You can use `if` conditionals, using their [custom expression
