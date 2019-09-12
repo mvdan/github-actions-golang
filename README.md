@@ -107,6 +107,20 @@ to set up the secret in the repo's settings. After adding a secret like
     FOO_SECRET: ${{ secrets.FOO_SECRET }}
 ```
 
+#### How do I install private modules?
+
+It's possible to install modules from private GitHub repositories without using
+your own proxy. You'll need to add a
+[personal access token](https://github.com/settings/tokens) as a secret
+environment variable for this to work.
+
+```yaml
+- name: Configure git for private modules
+  env:
+    TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+  run: git config --global url."https://YOUR_GITHUB_USERNAME:${TOKEN}@github.com".insteadOf "https://github.com"
+```
+
 ## Quick links
 
 * Concepts, rate limits, joining the beta, etc: https://help.github.com/en/articles/about-github-actions
