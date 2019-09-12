@@ -63,19 +63,6 @@ On Go 1.13 and later, this can be simplified:
   run: go env -w GOPROXY="https://proxy.company.com"
 ```
 
-#### How do I install private modules?
-
-It's possible to install modules from private GitHub repositories without using
-your own proxy. You'll need to create a
-[personal access token](https://github.com/settings/tokens) for this to work.
-
-```yaml
-- name: Configure git for private modules
-  env:
-    TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-  run: git config --global url."https://YOUR_GITHUB_USERNAME:${TOKEN}@github.com".insteadOf "https://github.com"
-```
-
 #### How do I set up caching between builds?
 
 We haven't been able to find a simple way to accomplish this. It would be useful
@@ -118,6 +105,19 @@ to set up the secret in the repo's settings. After adding a secret like
   run: some-command
   env:
     FOO_SECRET: ${{ secrets.FOO_SECRET }}
+```
+
+#### How do I install private modules?
+
+It's possible to install modules from private GitHub repositories without using
+your own proxy. You'll need to create a
+[personal access token](https://github.com/settings/tokens) for this to work.
+
+```yaml
+- name: Configure git for private modules
+  env:
+    TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+  run: git config --global url."https://YOUR_GITHUB_USERNAME:${TOKEN}@github.com".insteadOf "https://github.com"
 ```
 
 ## Quick links
