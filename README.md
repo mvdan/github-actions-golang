@@ -133,12 +133,6 @@ environment variable for this to work.
 
 ## Known bugs
 
-* https://github.com/actions/setup-go/issues/16
-
-The `setup-go` action can runs into rate limits when using "latest" versions
-such as `1.12.x`. To work around this issue, specify exact Go versions like
-`1.12.9`.
-
 * https://github.com/actions/setup-go/issues/14
 
 The `setup-go` action doesn't set `PATH`, so currently it's not possible to `go
