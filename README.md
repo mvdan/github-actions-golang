@@ -121,6 +121,16 @@ environment variable for this to work.
   run: git config --global url."https://YOUR_GITHUB_USERNAME:${TOKEN}@github.com".insteadOf "https://github.com"
 ```
 
+#### How do I install Linux packages?
+
+Use `sudo apt`, making sure to only run the step on Linux:
+
+```yaml
+- name: Install Linux packages
+  if: matrix.platform == 'ubuntu-latest'
+  run: sudo apt update && sudo apt install -y --no-install-recommends mypackage
+```
+
 ## Quick links
 
 * Concepts, rate limits, joining the beta, etc: https://help.github.com/en/articles/about-github-actions
