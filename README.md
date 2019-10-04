@@ -42,8 +42,7 @@ repository's code.
 #### What about module support?
 
 If your repository contains a `go.mod` file, Go 1.12 and later will already use
-module mode by default. To turn it on explicitly, set `GO111MODULE=on`. To use
-`GOPATH` mode, you'd need `$GOPATH/src/your/pkg/name` and `GO111MODULE=off`.
+module mode by default. To turn it on explicitly, set `GO111MODULE=on`.
 
 #### How do I set environent variables?
 
@@ -63,6 +62,14 @@ On Go 1.13 and later, this can be simplified:
   run: go env -w GOPROXY="https://proxy.company.com"
 ```
 
+There also appears to be an undocumented way to set global environment
+variables, as found by [Nick Craig-Wood](https://twitter.com/njcw):
+
+```
+- name: Set global env vars
+  run: echo '::set-env name=NAME::VALUE'
+```
+
 #### How do I set up caching between builds?
 
 We haven't been able to find a simple way to accomplish this. It would be useful
@@ -78,6 +85,13 @@ language](https://help.github.com/en/articles/contexts-and-expression-syntax-for
   if: github.event_name == 'push' && matrix.platform == 'ubuntu-latest'
   run: go run ./endtoend
 ```
+
+#### How do I set up a custom build matrix?
+
+You can [add options to existing matrix
+jobs](https://help.github.com/en/articles/workflow-syntax-for-github-actions#example-including-configurations-in-a-matrix-build),
+and you can [exclude specific matrix
+jobs](https://help.github.com/en/articles/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
 
 #### How do I run multiline scripts?
 
@@ -129,6 +143,21 @@ Use `sudo apt`, making sure to only run the step on Linux:
 - name: Install Linux packages
   if: matrix.platform == 'ubuntu-latest'
   run: sudo apt update && sudo apt install -y --no-install-recommends mypackage
+```
+
+#### How do I set up a GOPATH build?
+
+We can set up a GOPATH with global environment variables, as explained earlier:
+
+```
+- name: Checkout code
+  uses: actions/checkout@v1
+  with:
+    path: ./src/github.com/${{ github.repository }}
+- name: Set GOPATH
+  run: |
+    echo '::set-env name=GOPATH::${{ runner.workspace }}'
+    echo '::add-path::${{ runner.workspace }}/bin'
 ```
 
 ## Quick links
