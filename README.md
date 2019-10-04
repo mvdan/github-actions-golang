@@ -46,28 +46,15 @@ module mode by default. To turn it on explicitly, set `GO111MODULE=on`.
 
 #### How do I set environent variables?
 
-They can only be set for each step, as far as the documentation covers:
+They can be set up via `env` for an [entire
+workflow](https://help.github.com/en/articles/workflow-syntax-for-github-actions#env),
+a job, or for each step:
 
 ```
-- name: Download Go dependencies with a custom proxy
-  env:
-    GOPROXY: "https://proxy.company.com"
-  run: go mod download
-```
-
-On Go 1.13 and later, this can be simplified:
-
-```
-- name: Set Go env vars
-  run: go env -w GOPROXY="https://proxy.company.com"
-```
-
-There also appears to be an undocumented way to set global environment
-variables, as found by [Nick Craig-Wood](https://twitter.com/njcw):
-
-```
-- name: Set global env vars
-  run: echo '::set-env name=NAME::VALUE'
+env:
+  GOPROXY: "https://proxy.company.com"
+jobs:
+  [...]
 ```
 
 #### How do I set up caching between builds?
@@ -147,17 +134,19 @@ Use `sudo apt`, making sure to only run the step on Linux:
 
 #### How do I set up a GOPATH build?
 
-We can set up a GOPATH with global environment variables, as explained earlier:
+Declare GOPATH and clone inside it:
 
 ```
-- name: Checkout code
-  uses: actions/checkout@v1
-  with:
-    path: ./src/github.com/${{ github.repository }}
-- name: Set GOPATH
-  run: |
-    echo '::set-env name=GOPATH::${{ runner.workspace }}'
-    echo '::add-path::${{ runner.workspace }}/bin'
+jobs:
+  test-gopath:
+    env:
+      GOPATH: ${{ runner.workspace }}
+      GO111MODULE: off
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v1
+      with:
+        path: ./src/github.com/${{ github.repository }}
 ```
 
 ## Quick links
