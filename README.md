@@ -5,7 +5,7 @@ for Open Source repositories. This document contains information on making it
 work well for [Go](https://github.com/features/actions). See them [in
 action](https://github.com/mvdan/github-actions-golang/actions):
 
-```
+```yaml
 $ cat .github/workflows/test.yml
 on: [push, pull_request]
 name: Test
@@ -50,7 +50,7 @@ They can be set up via `env` for an [entire
 workflow](https://help.github.com/en/articles/workflow-syntax-for-github-actions#env),
 a job, or for each step:
 
-```
+```yaml
 env:
   GOPROXY: "https://proxy.company.com"
 jobs:
@@ -67,7 +67,7 @@ to persist Go's module download and build caches.
 You can use `if` conditionals, using their [custom expression
 language](https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions):
 
-```
+```yaml
 - name: Run end-to-end tests on Linux
   if: github.event_name == 'push' && matrix.platform == 'ubuntu-latest'
   run: go run ./endtoend
@@ -82,7 +82,7 @@ jobs](https://help.github.com/en/articles/workflow-syntax-for-github-actions#exa
 
 #### How do I run multiline scripts?
 
-```
+```yaml
 - name: Series of commands
   run: |
     go test ./...
@@ -101,7 +101,7 @@ Follow [these steps](https://help.github.com/en/articles/virtual-environments-fo
 to set up the secret in the repo's settings. After adding a secret like
 `FOO_SECRET`, use it on a step as follows:
 
-```
+```yaml
 - name: Command that requires secret
   run: some-command
   env:
@@ -136,7 +136,7 @@ Use `sudo apt`, making sure to only run the step on Linux:
 
 Declare GOPATH and clone inside it:
 
-```
+```yaml
 jobs:
   test-gopath:
     env:
@@ -173,7 +173,7 @@ paths like `$(go env GOPATH)/bin/program`.
 your plaintext `testdata` files on Windows. To work around this, set up the
 following `.gitattributes`:
 
-```
+```gitattributes
 * -text
 ```
 
@@ -192,9 +192,9 @@ manually:
 it. Note that case sensitivity doesn't matter, and that `os.Open` should still
 work; but some programs not treaing short names might break.
 
-```
-$ echo %USERPROFILE%  # i.e. $HOME
+```cmd
+> echo %USERPROFILE%
 C:\Users\runneradmin
-$ echo %TEMP%         # a shortened version of $HOME/AppData/Local/Temp
+> echo %TEMP%
 C:\Users\RUNNER~1\AppData\Local\Temp
 ```
