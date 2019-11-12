@@ -59,8 +59,17 @@ jobs:
 
 #### How do I set up caching between builds?
 
-We haven't been able to find a simple way to accomplish this. It would be useful
-to persist Go's module download and build caches.
+Use [actions/cache](https://github.com/actions/cache). For example, to cache
+downloaded modules:
+
+```
+- uses: actions/cache@v1
+  with:
+    path: ~/go/pkg/mod
+    key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+    restore-keys: |
+      ${{ runner.os }}-go-
+```
 
 #### How do I run a step conditionally?
 
