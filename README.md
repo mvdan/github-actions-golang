@@ -160,7 +160,7 @@ jobs:
 
 ## Quick links
 
-* Concepts, rate limits, joining the beta, etc: https://help.github.com/en/articles/about-github-actions
+* Concepts, rate limits, etc: https://help.github.com/en/articles/about-github-actions
 
 * Syntax and fields reference: https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
