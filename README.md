@@ -22,7 +22,7 @@ jobs:
       with:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
     - name: Test
       run: go test ./...
 ```
@@ -153,7 +153,7 @@ jobs:
       GO111MODULE: off
     steps:
     - name: Checkout code
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
       with:
         path: ./src/github.com/${{ github.repository }}
 ```
