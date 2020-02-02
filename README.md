@@ -2,7 +2,7 @@
 
 [GitHub Actions](https://github.com/features/actions) includes CI/CD for free
 for Open Source repositories. This document contains information on making it
-work well for [Go](https://github.com/features/actions). See them [in
+work well for [Go](https://golang.org). See them [in
 action](https://github.com/mvdan/github-actions-golang/actions):
 
 ```yaml
@@ -106,7 +106,7 @@ seem to be a difference.
 
 #### How do I set up a secret environment variable?
 
-Follow [these steps](https://help.github.com/en/articles/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables)
+Follow [these steps](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
 to set up the secret in the repo's settings. After adding a secret like
 `FOO_SECRET`, use it on a step as follows:
 
