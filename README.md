@@ -100,9 +100,10 @@ jobs](https://help.github.com/en/articles/workflow-syntax-for-github-actions#exa
 
 #### Should I use two workflows, or two jobs on one workflow?
 
-As far as we can tell, the only differences are in the UI and in how each
-workflow can be triggered on a different set of events. Otherwise, there doesn't
-seem to be a difference.
+The biggest difference is the UI; workflow results are shown separately.
+Grouping jobs in workflows can also be useful if one wants to customize the
+workflow triggers, or to set up dependencies via
+[needs](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobsjob_idneeds).
 
 #### How do I set up a secret environment variable?
 
