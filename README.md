@@ -144,13 +144,13 @@ Use `sudo apt`, making sure to only run the step on Linux:
 
 #### How do I set up a GOPATH build?
 
-Declare GOPATH and clone inside it:
+Declare GOPATH and clone inside of it:
 
 ```yaml
 jobs:
   test-gopath:
     env:
-      GOPATH: ${{ runner.workspace }}
+      GOPATH: ${{ github.workspace }}
       GO111MODULE: off
     steps:
     - name: Checkout code
