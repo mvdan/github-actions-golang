@@ -3,7 +3,7 @@ package os
 import (
 	"runtime"
 
-	"dummy.module/actions/log"
+	"github.com/ekrem95/github-actions-golang/log"
 )
 
 func Print() {
