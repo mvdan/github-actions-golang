@@ -6,6 +6,6 @@ import (
 	"github.com/ekrem95/github-actions-golang/log"
 )
 
-func Print() {
+func print() {
 	log.Infof("GOOS: %s\n", runtime.GOOS)
 }

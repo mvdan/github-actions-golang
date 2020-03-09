@@ -8,5 +8,5 @@ import (
 )
 
 func TestDemo(t *testing.T) {
-	Print()
+	print()
 }

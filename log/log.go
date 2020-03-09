@@ -4,13 +4,8 @@ import (
 	"go.uber.org/zap"
 )
 
-func Root() *zap.Logger {
-	logger, _ := zap.NewProduction()
-	return logger
-}
-
 func Infof(template string, args ...interface{}) {
-	logger := Root()
+	logger, _ := zap.NewProduction()
 	defer logger.Sync()
 
 	sugar := logger.Sugar()
