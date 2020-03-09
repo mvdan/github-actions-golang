@@ -1,4 +1,4 @@
-module dummy.module/actions
+module github.com/ekrem95/github-actions-golang
 
 go 1.13
 
