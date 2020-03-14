@@ -47,7 +47,7 @@ module mode by default. To turn it on explicitly, set `GO111MODULE=on`.
 #### How do I set environent variables?
 
 They can be set up via `env` for an [entire
-workflow](https://help.github.com/en/articles/workflow-syntax-for-github-actions#env),
+workflow](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#env),
 a job, or for each step:
 
 ```yaml
@@ -74,7 +74,7 @@ downloaded modules:
 #### How do I run a step conditionally?
 
 You can use `if` conditionals, using their [custom expression
-language](https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions):
+language](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions):
 
 ```yaml
 - name: Run end-to-end tests on Linux
@@ -85,9 +85,9 @@ language](https://help.github.com/en/articles/contexts-and-expression-syntax-for
 #### How do I set up a custom build matrix?
 
 You can [add options to existing matrix
-jobs](https://help.github.com/en/articles/workflow-syntax-for-github-actions#example-including-configurations-in-a-matrix-build),
+jobs](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-including-configurations-in-a-matrix-build),
 and you can [exclude specific matrix
-jobs](https://help.github.com/en/articles/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
+jobs](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
 
 #### How do I run multiline scripts?
 
@@ -103,11 +103,11 @@ jobs](https://help.github.com/en/articles/workflow-syntax-for-github-actions#exa
 The biggest difference is the UI; workflow results are shown separately.
 Grouping jobs in workflows can also be useful if one wants to customize the
 workflow triggers, or to set up dependencies via
-[needs](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobsjob_idneeds).
+[needs](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idneeds).
 
 #### How do I set up a secret environment variable?
 
-Follow [these steps](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
+Follow [these steps](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets)
 to set up the secret in the repo's settings. After adding a secret like
 `FOO_SECRET`, use it on a step as follows:
 
@@ -161,11 +161,11 @@ jobs:
 
 ## Quick links
 
-* Concepts, rate limits, etc: https://help.github.com/en/articles/about-github-actions
+* Concepts, rate limits, etc: https://help.github.com/en/actions/getting-started-with-github-actions/about-github-actions
 
-* Syntax and fields reference: https://help.github.com/en/articles/workflow-syntax-for-github-actions
+* Syntax and fields reference: https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions
 
-* Environment reference: https://help.github.com/en/articles/virtual-environments-for-github-actions
+* Environment reference: https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
 
 * To report bugs: https://github.community/t5/GitHub-Actions/bd-p/actions
 
