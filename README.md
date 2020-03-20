@@ -177,6 +177,15 @@ The `setup-go` action doesn't set `PATH`, so currently it's not possible to `go
 install` a program and run it directly. Until that's fixed, consider absolute
 paths like `$(go env GOPATH)/bin/program`.
 
+An undocumented workaround is to use a built-in special string to add `GOBIN` to
+the system's `PATH`. Note that `shell: bash` is supported on all platforms:
+
+```yaml
+    - name: Add GOBIN to PATH
+      run: echo "::add-path::$(go env GOPATH)/bin"
+      shell: bash
+```
+
 * https://github.community/t5/GitHub-Actions/git-config-core-autocrlf-should-default-to-false/m-p/30445
 
 `git config core.autocrlf` defaults to true, so be careful about CRLF endings in
