@@ -187,7 +187,10 @@ all platforms:
       shell: bash
 ```
 
-* https://github.community/t5/GitHub-Actions/git-config-core-autocrlf-should-default-to-false/m-p/30445
+Note that the upcoming `actions/setup-go@v2` fixes this issue, but is still in
+beta as of April 2020.
+
+* https://github.community/t5/GitHub-Actions/git-config-core-autocrlf-should-default-to-false/m-p/30445 and https://github.com/actions/checkout/issues/135
 
 `git config core.autocrlf` defaults to true, so be careful about CRLF endings in
 your plaintext `testdata` files on Windows. To work around this, set up the
@@ -197,7 +200,7 @@ following `.gitattributes`:
 * -text
 ```
 
-* https://github.community/t5/GitHub-Actions/TEMP-is-broken-on-Windows/m-p/30432/thread-id/427
+* https://github.community/t5/GitHub-Actions/TEMP-is-broken-on-Windows/m-p/30432/thread-id/427 and https://github.com/actions/runner/issues/424
 
 `os.TempDir` on Windows will contain a short name, since `%TEMP%` also contains
 it. Note that case sensitivity doesn't matter, and that `os.Open` should still
