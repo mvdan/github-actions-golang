@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
     - name: Install Go
-      uses: actions/setup-go@v1
+      uses: actions/setup-go@v2
       with:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
@@ -170,25 +170,6 @@ jobs:
 * To report bugs: https://github.community/t5/GitHub-Actions/bd-p/actions
 
 ## Known bugs
-
-* https://github.com/actions/setup-go/issues/14
-
-The `setup-go` action doesn't set `PATH`, so currently it's not possible to `go
-install` a program and run it directly. Until that's fixed, consider absolute
-paths like `$(go env GOPATH)/bin/program`.
-
-A workaround is to use a built-in [workflow command](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#adding-a-system-path)
-to add `GOBIN` to the system's `PATH`. Note that `shell: bash` is supported on
-all platforms:
-
-```yaml
-    - name: Add GOBIN to PATH
-      run: echo "::add-path::$(go env GOPATH)/bin"
-      shell: bash
-```
-
-Note that the upcoming `actions/setup-go@v2` fixes this issue, but is still in
-beta as of April 2020.
 
 * https://github.community/t5/GitHub-Actions/git-config-core-autocrlf-should-default-to-false/m-p/30445 and https://github.com/actions/checkout/issues/135
 
