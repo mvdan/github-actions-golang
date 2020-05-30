@@ -167,7 +167,7 @@ jobs:
 
 * Environment reference: https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
 
-* To report bugs: https://github.community/t5/GitHub-Actions/bd-p/actions
+* To report bugs: https://github.community/c/github-actions/41
 
 ## Caveats
 
@@ -181,7 +181,7 @@ following `.gitattributes`:
 * -text
 ```
 
-* https://github.com/actions/runner/issues/424
+* https://github.com/actions/virtual-environments/issues/712
 
 `os.TempDir` on Windows will contain a short name, since `%TEMP%` also contains
 it. Note that case sensitivity doesn't matter, and that `os.Open` should still
