@@ -63,7 +63,7 @@ Use [actions/cache](https://github.com/actions/cache). For example, to cache
 downloaded modules:
 
 ```
-- uses: actions/cache@v1
+- uses: actions/cache@v2
   with:
     path: ~/go/pkg/mod
     key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
