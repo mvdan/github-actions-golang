@@ -57,6 +57,16 @@ jobs:
   [...]
 ```
 
+#### How do I set environent variables at run-time?
+
+You can use [workflow commands](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions)
+to set environment variables, add an element to `$PATH`, and more. For example:
+
+```yaml
+echo "::set-env name=CGO_ENABLED::0"
+echo "::add-path::${HOME}/goroot/bin"
+```
+
 #### How do I set up caching between builds?
 
 Use [actions/cache](https://github.com/actions/cache). For example, to cache
@@ -84,8 +94,8 @@ language](https://docs.github.com/en/actions/reference/context-and-expression-sy
 
 #### How do I set up a custom build matrix?
 
-You can [add options to existing matrix
-jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-including-configurations-in-a-matrix-build),
+You can [include matrix
+jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-including-new-combinations),
 and you can [exclude specific matrix
 jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
 
