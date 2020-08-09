@@ -15,7 +15,7 @@ jobs:
       matrix:
         go-version: [1.13.x, 1.14.x]
         os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.platform }}
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Install Go
       uses: actions/setup-go@v2
@@ -88,7 +88,7 @@ language](https://docs.github.com/en/actions/reference/context-and-expression-sy
 
 ```yaml
 - name: Run end-to-end tests on Linux
-  if: github.event_name == 'push' && matrix.platform == 'ubuntu-latest'
+  if: github.event_name == 'push' && matrix.os == 'ubuntu-latest'
   run: go run ./endtoend
 ```
 
@@ -148,7 +148,7 @@ Use `sudo apt`, making sure to only run the step on Linux:
 
 ```yaml
 - name: Install Linux packages
-  if: matrix.platform == 'ubuntu-latest'
+  if: matrix.os == 'ubuntu-latest'
   run: sudo apt update && sudo apt install -y --no-install-recommends mypackage
 ```
 
