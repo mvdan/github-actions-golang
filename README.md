@@ -29,12 +29,13 @@ jobs:
 
 ## Summary
 
-Each workflow file has a number of jobs, which get run `on` specified events.
+Each workflow file has a number of jobs, which get run `on` specified events,
+and run concurrently with each other.
 
-Each job runs on a configuration matrix. For example, we can test two major Go
-versions on three operating systems.
+Each `job` runs on a configuration `matrix`. For example, we can test two major
+Go versions on three operating systems.
 
-Each job has a number of steps, such as installing Go, or checking out the
+Each job has a number of `steps`, such as installing Go, or checking out the
 repository's code.
 
 ## FAQs
@@ -94,7 +95,7 @@ language](https://docs.github.com/en/actions/reference/context-and-expression-sy
 
 #### How do I set up a custom build matrix?
 
-You can [include matrix
+You can [include extra matrix
 jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-including-new-combinations),
 and you can [exclude specific matrix
 jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
@@ -152,9 +153,9 @@ Use `sudo apt`, making sure to only run the step on Linux:
   run: sudo apt update && sudo apt install -y --no-install-recommends mypackage
 ```
 
-#### How do I set up a GOPATH build?
+#### How do I set up a `GOPATH` build?
 
-Declare GOPATH and clone inside of it:
+Declare `GOPATH` and clone inside of it:
 
 ```yaml
 jobs:
