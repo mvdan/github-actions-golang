@@ -45,7 +45,7 @@ repository's code.
 If your repository contains a `go.mod` file, Go 1.12 and later will already use
 module mode by default. To turn it on explicitly, set `GO111MODULE=on`.
 
-#### How do I set environent variables?
+#### How do I set environment variables?
 
 They can be set up via `env` for an [entire
 workflow](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#env),
@@ -58,7 +58,7 @@ jobs:
   [...]
 ```
 
-#### How do I set environent variables at run-time?
+#### How do I set environment variables at run-time?
 
 You can use [workflow commands](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions)
 to set environment variables, add an element to `$PATH`, and more. For example:
@@ -196,7 +196,7 @@ following `.gitattributes`:
 
 `os.TempDir` on Windows will contain a short name, since `%TEMP%` also contains
 it. Note that case sensitivity doesn't matter, and that `os.Open` should still
-work; but some programs not treaing short names might break.
+work; but some programs not treating short names might break.
 
 ```cmd
 > echo %USERPROFILE%
