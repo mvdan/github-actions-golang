@@ -64,8 +64,11 @@ You can use [workflow commands](https://docs.github.com/en/free-pro-team@latest/
 to set environment variables or add an element to `$PATH`. For example:
 
 ```yaml
-echo "CGO_ENABLED=0" >> $GITHUB_ENV
-echo "${HOME}/goroot/bin" >> $GITHUB_PATH
+steps:
+- name: Set env vars
+  run: |
+      echo "CGO_ENABLED=0" >> $GITHUB_ENV
+      echo "${HOME}/goroot/bin" >> $GITHUB_PATH
 ```
 
 Note that these take effect for future steps in the job.
@@ -75,7 +78,7 @@ Note that these take effect for future steps in the job.
 Use [actions/cache](https://github.com/actions/cache). For example, to cache
 downloaded modules:
 
-```
+```yaml
 - uses: actions/cache@v2
   with:
     path: ~/go/pkg/mod
