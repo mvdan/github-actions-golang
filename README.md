@@ -87,6 +87,17 @@ downloaded modules:
       ${{ runner.os }}-go-
 ```
 
+You can also include Go's build cache, to improve incremental builds:
+
+```yaml
+TODO
+```
+
+This is demonstrated via the `test-cache` job [in this very repository](https://github.com/mvdan/github-actions-golang/actions).
+
+See [this guide](https://docs.github.com/en/free-pro-team@latest/actions/guides/caching-dependencies-to-speed-up-workflows)
+for more details.
+
 #### How do I run a step conditionally?
 
 You can use `if` conditionals, using their [custom expression
@@ -168,11 +179,14 @@ jobs:
     env:
       GOPATH: ${{ github.workspace }}
       GO111MODULE: off
+    defaults:
+      run:
+        working-directory: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        path: ./src/github.com/${{ github.repository }}
+        path: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
 ```
 
 ## Quick links
