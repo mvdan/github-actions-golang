@@ -60,13 +60,15 @@ jobs:
 
 #### How do I set environment variables at run-time?
 
-You can use [workflow commands](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions)
-to set environment variables, add an element to `$PATH`, and more. For example:
+You can use [workflow commands](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#environment-files)
+to set environment variables or add an element to `$PATH`. For example:
 
 ```yaml
-echo "::set-env name=CGO_ENABLED::0"
-echo "::add-path::${HOME}/goroot/bin"
+echo "CGO_ENABLED=0" >> $GITHUB_ENV
+echo "${HOME}/goroot/bin" >> $GITHUB_PATH
 ```
+
+Note that these take effect for future steps in the job.
 
 #### How do I set up caching between builds?
 
