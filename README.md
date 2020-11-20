@@ -159,13 +159,21 @@ to set up the secret in the repo's settings. After adding a secret like
 It's possible to install modules from private GitHub repositories without using
 your own proxy. You'll need to add a
 [personal access token](https://github.com/settings/tokens) as a secret
-environment variable for this to work.
+environment variable, as well as configure
+[GOPRIVATE](https://golang.org/pkg/cmd/go/#hdr-Module_configuration_for_non_public_modules).
 
 ```yaml
 - name: Configure git for private modules
   env:
     TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
   run: git config --global url."https://YOUR_GITHUB_USERNAME:${TOKEN}@github.com".insteadOf "https://github.com"
+```
+
+```yaml
+env:
+  GOPRIVATE: "*.company.com"
+jobs:
+  [...]
 ```
 
 #### How do I install Linux packages?
