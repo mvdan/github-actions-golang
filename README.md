@@ -93,10 +93,10 @@ You can also include Go's build cache, to improve incremental builds:
 - uses: actions/cache@v2
   with:
     path: |
-      ~/go/pkg/mod              # Module download cache
-      ~/.cache/go-build         # Build cache (Linux)
-      ~/Library/Caches/go-build # Build cache (Mac)
-      '%LocalAppData%\go-build' # Build cache (Windows)
+      ~/go/pkg/mod
+      ~/.cache/go-build
+      ~/Library/Caches/go-build
+      %LocalAppData%\go-build
     key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
     restore-keys: |
       ${{ runner.os }}-go-
