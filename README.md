@@ -92,6 +92,11 @@ You can also include Go's build cache, to improve incremental builds:
 ```yaml
 - uses: actions/cache@v2
   with:
+    # In order:
+    # * Module download cache
+    # * Build cache (Linux)
+    # * Build cache (Mac)
+    # * Build cache (Windows)
     path: |
       ~/go/pkg/mod
       ~/.cache/go-build
