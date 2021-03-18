@@ -48,7 +48,7 @@ module mode by default. To turn it on explicitly, set `GO111MODULE=on`.
 #### How do I set environment variables?
 
 They can be set up via `env` for an [entire
-workflow](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#env),
+workflow](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#env),
 a job, or for each step:
 
 ```yaml
@@ -60,7 +60,7 @@ jobs:
 
 #### How do I set environment variables at run-time?
 
-You can use [workflow commands](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#environment-files)
+You can use [workflow commands](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#environment-files)
 to set environment variables or add an element to `$PATH`. For example:
 
 ```yaml
@@ -109,13 +109,13 @@ You can also include Go's build cache, to improve incremental builds:
 
 This is demonstrated via the `test-cache` job [in this very repository](https://github.com/mvdan/github-actions-golang/actions).
 
-See [this guide](https://docs.github.com/en/free-pro-team@latest/actions/guides/caching-dependencies-to-speed-up-workflows)
+See [this guide](https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows)
 for more details.
 
 #### How do I run a step conditionally?
 
 You can use `if` conditionals, using their [custom expression
-language](https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions):
+language](https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions):
 
 ```yaml
 - name: Run end-to-end tests on Linux
@@ -126,9 +126,9 @@ language](https://docs.github.com/en/free-pro-team@latest/actions/reference/cont
 #### How do I set up a custom build matrix?
 
 You can [include extra matrix
-jobs](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#example-including-new-combinations),
+jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-including-new-combinations),
 and you can [exclude specific matrix
-jobs](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
+jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
 
 #### How do I run multiline scripts?
 
@@ -144,11 +144,11 @@ jobs](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow
 The biggest difference is the UI; workflow results are shown separately.
 Grouping jobs in workflows can also be useful if one wants to customize the
 workflow triggers, or to set up dependencies via
-[needs](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idneeds).
+[needs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idneeds).
 
 #### How do I set up a secret environment variable?
 
-Follow [these steps](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets)
+Follow [these steps](https://docs.github.com/en/actions/reference/encrypted-secrets)
 to set up the secret in the repo's settings. After adding a secret like
 `FOO_SECRET`, use it on a step as follows:
 
@@ -213,13 +213,13 @@ jobs:
 
 ## Quick links
 
-* Concepts, rate limits, etc: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions
+* Concepts, rate limits, etc: https://docs.github.com/en/actions/learn-github-actions
 
-* Syntax and fields reference: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
+* Syntax and fields reference: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
 
-* Environment reference: https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners
+* Environment reference: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
 
-* To report bugs: https://github.community/c/github-actions/41
+* To report bugs: https://github.community/c/code-to-cloud/github-actions/41
 
 ## Caveats
 
