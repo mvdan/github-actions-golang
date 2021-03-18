@@ -60,7 +60,7 @@ jobs:
 
 #### How do I set environment variables at run-time?
 
-You can use [workflow commands](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#environment-files)
+You can use [environment files](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#environment-files)
 to set environment variables or add an element to `$PATH`. For example:
 
 ```yaml
@@ -165,7 +165,7 @@ It's possible to install modules from private GitHub repositories without using
 your own proxy. You'll need to add a
 [personal access token](https://github.com/settings/tokens) as a secret
 environment variable, as well as configure
-[GOPRIVATE](https://golang.org/pkg/cmd/go/#hdr-Module_configuration_for_non_public_modules).
+[GOPRIVATE](https://golang.org/ref/mod#private-modules).
 
 ```yaml
 - name: Configure git for private modules
