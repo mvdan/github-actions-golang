@@ -30,7 +30,7 @@ jobs:
 ## Summary
 
 Each workflow file has a number of jobs, which get run `on` specified events,
-and run concurrently with each other. You can have workflow [status badges](https://docs.github.com/en/actions/managing-workflow-runs/adding-a-workflow-status-badge).
+and run concurrently with each other. You can have workflow [status badges](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge).
 
 Each `job` runs on a configuration `matrix`. For example, we can test two major
 Go versions on three operating systems.
