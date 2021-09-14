@@ -13,7 +13,7 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.15.x, 1.16.x]
+        go-version: [1.16.x, 1.17.x]
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -42,8 +42,8 @@ repository's code.
 
 #### What about module support?
 
-If your repository contains a `go.mod` file, Go 1.12 and later will already use
-module mode by default. To turn it on explicitly, set `GO111MODULE=on`.
+Go 1.16 and later will already use module mode by default.
+Go 1.12 and later do the same if a `go.mod` file is present.
 
 #### How do I set environment variables?
 
