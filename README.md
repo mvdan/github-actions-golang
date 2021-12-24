@@ -2,7 +2,7 @@
 
 [GitHub Actions](https://github.com/features/actions) includes CI/CD for free
 for Open Source repositories. This document contains information on making it
-work well for [Go](https://golang.org). See them [in
+work well for [Go](https://go.dev/). See them [in
 action](https://github.com/mvdan/github-actions-golang/actions):
 
 ```yaml
@@ -48,7 +48,7 @@ Go 1.12 and later do the same if a `go.mod` file is present.
 #### How do I set environment variables?
 
 They can be set up via `env` for an [entire
-workflow](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#env),
+workflow](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#env),
 a job, or for each step:
 
 ```yaml
@@ -60,7 +60,7 @@ jobs:
 
 #### How do I set environment variables at run-time?
 
-You can use [environment files](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#environment-files)
+You can use [environment files](https://docs.github.com/en/actions/learn-github-actions/workflow-commands-for-github-actions#environment-files)
 to set environment variables or add an element to `$PATH`. For example:
 
 ```yaml
@@ -109,13 +109,13 @@ You can also include Go's build cache, to improve incremental builds:
 
 This is demonstrated via the `test-cache` job [in this very repository](https://github.com/mvdan/github-actions-golang/actions).
 
-See [this guide](https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows)
+See [this guide](https://docs.github.com/en/actions/advanced-guides/caching-dependencies-to-speed-up-workflows)
 for more details.
 
 #### How do I run a step conditionally?
 
 You can use `if` conditionals, using their [custom expression
-language](https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions):
+language](https://docs.github.com/en/actions/learn-github-actions/contexts):
 
 ```yaml
 - name: Run end-to-end tests on Linux
@@ -126,9 +126,9 @@ language](https://docs.github.com/en/actions/reference/context-and-expression-sy
 #### How do I set up a custom build matrix?
 
 You can [include extra matrix
-jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-including-new-combinations),
+jobs](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#example-including-new-combinations),
 and you can [exclude specific matrix
-jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
+jobs](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
 
 #### How do I run multiline scripts?
 
@@ -144,11 +144,11 @@ jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-ac
 The biggest difference is the UI; workflow results are shown separately.
 Grouping jobs in workflows can also be useful if one wants to customize the
 workflow triggers, or to set up dependencies via
-[needs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idneeds).
+[needs](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idneeds).
 
 #### How do I set up a secret environment variable?
 
-Follow [these steps](https://docs.github.com/en/actions/reference/encrypted-secrets)
+Follow [these steps](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
 to set up the secret in the repo's settings. After adding a secret like
 `FOO_SECRET`, use it on a step as follows:
 
@@ -165,7 +165,7 @@ It's possible to install modules from private GitHub repositories without using
 your own proxy. You'll need to add a
 [personal access token](https://github.com/settings/tokens) as a secret
 environment variable, as well as configure
-[GOPRIVATE](https://golang.org/ref/mod#private-modules).
+[GOPRIVATE](https://go.dev/ref/mod#private-modules).
 
 ```yaml
 - name: Configure git for private modules
@@ -215,7 +215,7 @@ jobs:
 
 * Concepts, rate limits, etc: https://docs.github.com/en/actions/learn-github-actions
 
-* Syntax and fields reference: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
+* Syntax and fields reference: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
 
 * Environment reference: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
 
