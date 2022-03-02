@@ -17,10 +17,10 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/setup-go@v2
+    - uses: actions/setup-go@v3
       with:
         go-version: ${{ matrix.go-version }}
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: go test ./...
 ```
 
@@ -100,10 +100,10 @@ You can also include Go's build cache, to improve incremental builds:
       ~/go/pkg/mod
       ~/.cache/go-build
       ~/Library/Caches/go-build
-      %LocalAppData%\go-build
-    key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+      ~\AppData\Local\go-build
+    key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
     restore-keys: |
-      ${{ runner.os }}-go-
+      ${{ runner.os }}-go-${{ matrix.go-version }}-
 ```
 
 This is demonstrated via the `test-cache` job [in this very repository](https://github.com/mvdan/github-actions-golang/actions).
@@ -201,7 +201,7 @@ jobs:
       run:
         working-directory: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         path: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
 ```
