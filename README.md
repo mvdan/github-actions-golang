@@ -17,14 +17,11 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-    - name: Install Go
-      uses: actions/setup-go@v2
+    - uses: actions/setup-go@v2
       with:
         go-version: ${{ matrix.go-version }}
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Test
-      run: go test ./...
+    - uses: actions/checkout@v2
+    - run: go test ./...
 ```
 
 ## Summary
@@ -37,6 +34,8 @@ Go versions on three operating systems.
 
 Each job has a number of `steps`, such as installing Go, or checking out the
 repository's code.
+
+Note that `name` fields are optional.
 
 ## FAQs
 
@@ -118,8 +117,7 @@ You can use `if` conditionals, using their [custom expression
 language](https://docs.github.com/en/actions/learn-github-actions/contexts):
 
 ```yaml
-- name: Run end-to-end tests on Linux
-  if: github.event_name == 'push' && matrix.os == 'ubuntu-latest'
+- if: github.event_name == 'push' && matrix.os == 'ubuntu-latest'
   run: go run ./endtoend
 ```
 
@@ -153,8 +151,7 @@ to set up the secret in the repo's settings. After adding a secret like
 `FOO_SECRET`, use it on a step as follows:
 
 ```yaml
-- name: Command that requires secret
-  run: some-command
+- run: some-command
   env:
     FOO_SECRET: ${{ secrets.FOO_SECRET }}
 ```
@@ -186,8 +183,7 @@ jobs:
 Use `sudo apt`, making sure to only run the step on Linux:
 
 ```yaml
-- name: Install Linux packages
-  if: matrix.os == 'ubuntu-latest'
+- if: matrix.os == 'ubuntu-latest'
   run: sudo apt update && sudo apt install -y --no-install-recommends mypackage
 ```
 
@@ -205,8 +201,7 @@ jobs:
       run:
         working-directory: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
       with:
         path: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
 ```
