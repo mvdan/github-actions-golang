@@ -13,7 +13,7 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.16.x, 1.17.x]
+        go-version: [1.17.x, 1.18.x]
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -38,11 +38,6 @@ repository's code.
 Note that `name` fields are optional.
 
 ## FAQs
-
-#### What about module support?
-
-Go 1.16 and later will already use module mode by default.
-Go 1.12 and later do the same if a `go.mod` file is present.
 
 #### How do I set environment variables?
 
