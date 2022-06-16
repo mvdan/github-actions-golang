@@ -73,7 +73,7 @@ Use [actions/cache](https://github.com/actions/cache). For example, to cache
 downloaded modules:
 
 ```yaml
-- uses: actions/cache@v2
+- uses: actions/cache@v3
   with:
     path: ~/go/pkg/mod
     key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
@@ -84,7 +84,7 @@ downloaded modules:
 You can also include Go's build cache, to improve incremental builds:
 
 ```yaml
-- uses: actions/cache@v2
+- uses: actions/cache@v3
   with:
     # In order:
     # * Module download cache

@@ -21,7 +21,7 @@ jobs:
       with:
         go-version: 1.18.x
     - uses: actions/checkout@v3
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       with:
         # In order:
         # * Module download cache
