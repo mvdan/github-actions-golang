@@ -42,7 +42,7 @@ Note that `name` fields are optional.
 #### How do I set environment variables?
 
 They can be set up via `env` for an [entire
-workflow](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#env),
+workflow](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#env),
 a job, or for each step:
 
 ```yaml
@@ -54,7 +54,7 @@ jobs:
 
 #### How do I set environment variables at run-time?
 
-You can use [environment files](https://docs.github.com/en/actions/learn-github-actions/workflow-commands-for-github-actions#environment-files)
+You can use [environment files](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files)
 to set environment variables or add an element to `$PATH`. For example:
 
 ```yaml
@@ -103,7 +103,7 @@ You can also include Go's build cache, to improve incremental builds:
 
 This is demonstrated via the `test-cache` job [in this very repository](https://github.com/mvdan/github-actions-golang/actions).
 
-See [this guide](https://docs.github.com/en/actions/advanced-guides/caching-dependencies-to-speed-up-workflows)
+See [this guide](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows)
 for more details.
 
 #### How do I run a step conditionally?
@@ -119,9 +119,9 @@ language](https://docs.github.com/en/actions/learn-github-actions/contexts):
 #### How do I set up a custom build matrix?
 
 You can [include extra matrix
-jobs](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#example-including-new-combinations),
+jobs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-new-combinations),
 and you can [exclude specific matrix
-jobs](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
+jobs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
 
 #### How do I run multiline scripts?
 
@@ -137,7 +137,7 @@ jobs](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-fo
 The biggest difference is the UI; workflow results are shown separately.
 Grouping jobs in workflows can also be useful if one wants to customize the
 workflow triggers, or to set up dependencies via
-[needs](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idneeds).
+[needs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds).
 
 #### How do I set up a secret environment variable?
 
@@ -205,11 +205,11 @@ jobs:
 
 * Concepts, rate limits, etc: https://docs.github.com/en/actions/learn-github-actions
 
-* Syntax and fields reference: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
+* Syntax and fields reference: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
 
 * Environment reference: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
 
-* To report bugs: https://github.community/c/code-to-cloud/github-actions/41
+* To report bugs: https://github.com/orgs/community/discussions/categories/actions-and-packages
 
 ## Caveats
 
@@ -223,7 +223,7 @@ following `.gitattributes`:
 * -text
 ```
 
-* https://github.com/actions/virtual-environments/issues/712
+* https://github.com/actions/runner-images/issues/712
 
 `os.TempDir` on Windows will contain a short name, since `%TEMP%` also contains
 it. Note that case sensitivity doesn't matter, and that `os.Open` should still
