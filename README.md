@@ -17,10 +17,10 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/setup-go@v3
+    - uses: actions/checkout@v3
+    - uses: actions/setup-go@v4
       with:
         go-version: ${{ matrix.go-version }}
-    - uses: actions/checkout@v3
     - run: go test ./...
 ```
 
@@ -69,8 +69,10 @@ Note that these take effect for future steps in the job.
 
 #### How do I set up caching between builds?
 
-Use [actions/cache](https://github.com/actions/cache). For example, to cache
-downloaded modules:
+Since v4, [actions/setup-go](https://github.com/actions/setup-go) caches `GOCACHE`
+and `GOMODCACHE` automatically, using `go.sum` as the cache key.
+You can turn that off via `cache: false`, and then you may also use your own
+custom caching, for example to only keep `GOMODCACHE`:
 
 ```yaml
 - uses: actions/cache@v3
@@ -80,28 +82,6 @@ downloaded modules:
     restore-keys: |
       ${{ runner.os }}-go-
 ```
-
-You can also include Go's build cache, to improve incremental builds:
-
-```yaml
-- uses: actions/cache@v3
-  with:
-    # In order:
-    # * Module download cache
-    # * Build cache (Linux)
-    # * Build cache (Mac)
-    # * Build cache (Windows)
-    path: |
-      ~/go/pkg/mod
-      ~/.cache/go-build
-      ~/Library/Caches/go-build
-      ~\AppData\Local\go-build
-    key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
-    restore-keys: |
-      ${{ runner.os }}-go-${{ matrix.go-version }}-
-```
-
-This is demonstrated via the `test-cache` job [in this very repository](https://github.com/mvdan/github-actions-golang/actions).
 
 See [this guide](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows)
 for more details.
