@@ -1,6 +1,6 @@
 module mod.test/actions
 
-go 1.19
+go 1.20
 
 require rsc.io/quote v1.5.2
 
