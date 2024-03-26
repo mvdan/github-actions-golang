@@ -138,12 +138,14 @@ your own proxy. You'll need to add a
 [personal access token](https://github.com/settings/tokens) as a secret
 environment variable, as well as configure
 [GOPRIVATE](https://go.dev/ref/mod#private-modules).
+You can also directly used the token provided by [GitHub](https://docs.github.com/fr/enterprise-cloud@latest/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow) in the workflow.
+You can define anything as username in the URL, it is not taken into account by GitHub.
 
 ```yaml
 - name: Configure git for private modules
   env:
     TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-  run: git config --global url."https://YOUR_GITHUB_USERNAME:${TOKEN}@github.com".insteadOf "https://github.com"
+  run: git config --global url."https://user:${TOKEN}@github.com".insteadOf "https://github.com"
 ```
 
 ```yaml
