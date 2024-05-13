@@ -13,14 +13,14 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.20.x, 1.21.x]
+        go-version: [1.21.x, 1.22.x]
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-go@v4
+    - uses: actions/setup-go@v5
       with:
         go-version: ${{ matrix.go-version }}
+    - uses: actions/checkout@v4
     - run: go test ./...
 ```
 
@@ -121,7 +121,7 @@ workflow triggers, or to set up dependencies via
 
 #### How do I set up a secret environment variable?
 
-Follow [these steps](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
+Follow [these steps](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
 to set up the secret in the repo's settings. After adding a secret like
 `FOO_SECRET`, use it on a step as follows:
 
@@ -138,7 +138,9 @@ your own proxy. You'll need to add a
 [personal access token](https://github.com/settings/tokens) as a secret
 environment variable, as well as configure
 [GOPRIVATE](https://go.dev/ref/mod#private-modules).
-You can also directly used the token provided by [GitHub](https://docs.github.com/fr/enterprise-cloud@latest/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow) in the workflow.
+You can also directly used the token
+[provided by GitHub](https://docs.github.com/en/enterprise-cloud@latest/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow)
+in the workflow.
 You can define anything as username in the URL, it is not taken into account by GitHub.
 
 ```yaml
@@ -189,9 +191,7 @@ jobs:
 
 * Syntax and fields reference: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
 
-* Environment reference: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
-
-* To report bugs: https://github.com/orgs/community/discussions/categories/actions-and-packages
+* GitHub-hosted runners: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
 
 ## Caveats
 
@@ -203,17 +203,4 @@ following `.gitattributes`:
 
 ```gitattributes
 * -text
-```
-
-* https://github.com/actions/runner-images/issues/712
-
-`os.TempDir` on Windows will contain a short name, since `%TEMP%` also contains
-it. Note that case sensitivity doesn't matter, and that `os.Open` should still
-work; but some programs not treating short names might break.
-
-```cmd
-> echo %USERPROFILE%
-C:\Users\runneradmin
-> echo %TEMP%
-C:\Users\RUNNER~1\AppData\Local\Temp
 ```
