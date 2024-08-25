@@ -13,14 +13,14 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.21.x, 1.22.x]
+        go-version: [1.22.x, 1.23.x]
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
+    - uses: actions/checkout@v4
     - uses: actions/setup-go@v5
       with:
         go-version: ${{ matrix.go-version }}
-    - uses: actions/checkout@v4
     - run: go test ./...
 ```
 
@@ -180,7 +180,7 @@ jobs:
       run:
         working-directory: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         path: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
 ```
