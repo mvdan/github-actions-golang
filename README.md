@@ -166,25 +166,6 @@ Use `sudo apt`, making sure to only run the step on Linux:
   run: sudo apt update && sudo apt install -y --no-install-recommends mypackage
 ```
 
-#### How do I set up a `GOPATH` build?
-
-Declare `GOPATH` and clone inside of it:
-
-```yaml
-jobs:
-  test-gopath:
-    env:
-      GOPATH: ${{ github.workspace }}
-      GO111MODULE: off
-    defaults:
-      run:
-        working-directory: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        path: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
-```
-
 ## Quick links
 
 * Concepts, rate limits, etc: https://docs.github.com/en/actions/learn-github-actions
