@@ -27,7 +27,7 @@ jobs:
 ## Summary
 
 Each workflow file has a number of jobs, which get run `on` specified events,
-and run concurrently with each other. You can have workflow [status badges](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge).
+and run concurrently with each other. You can have workflow [status badges](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/monitoring-workflows/adding-a-workflow-status-badge).
 
 Each `job` runs on a configuration `matrix`. For example, we can test two major
 Go versions on three operating systems.
@@ -42,7 +42,7 @@ Note that `name` fields are optional.
 #### How do I set environment variables?
 
 They can be set up via `env` for an [entire
-workflow](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#env),
+workflow](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#env),
 a job, or for each step:
 
 ```yaml
@@ -54,7 +54,7 @@ jobs:
 
 #### How do I set environment variables at run-time?
 
-You can use [environment files](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files)
+You can use [environment files](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#environment-files)
 to set environment variables or add an element to `$PATH`. For example:
 
 ```yaml
@@ -83,13 +83,13 @@ custom caching, for example to only keep `GOMODCACHE`:
       ${{ runner.os }}-go-
 ```
 
-See [this guide](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows)
+See [this guide](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows)
 for more details.
 
 #### How do I run a step conditionally?
 
 You can use `if` conditionals, using their [custom expression
-language](https://docs.github.com/en/actions/learn-github-actions/contexts):
+language](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs):
 
 ```yaml
 - if: github.event_name == 'push' && matrix.os == 'ubuntu-latest'
@@ -99,9 +99,9 @@ language](https://docs.github.com/en/actions/learn-github-actions/contexts):
 #### How do I set up a custom build matrix?
 
 You can [include extra matrix
-jobs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-new-combinations),
+jobs](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#example-including-new-combinations),
 and you can [exclude specific matrix
-jobs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
+jobs](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
 
 #### How do I run multiline scripts?
 
@@ -117,11 +117,11 @@ jobs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-git
 The biggest difference is the UI; workflow results are shown separately.
 Grouping jobs in workflows can also be useful if one wants to customize the
 workflow triggers, or to set up dependencies via
-[needs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds).
+[needs](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds).
 
 #### How do I set up a secret environment variable?
 
-Follow [these steps](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
+Follow [these steps](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 to set up the secret in the repo's settings. After adding a secret like
 `FOO_SECRET`, use it on a step as follows:
 
@@ -139,7 +139,7 @@ your own proxy. You'll need to add a
 environment variable, as well as configure
 [GOPRIVATE](https://go.dev/ref/mod#private-modules).
 You can also directly used the token
-[provided by GitHub](https://docs.github.com/en/enterprise-cloud@latest/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow)
+[provided by GitHub](https://docs.github.com/en/enterprise-cloud@latest/actions/security-for-github-actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow)
 in the workflow.
 You can define anything as username in the URL, it is not taken into account by GitHub.
 
@@ -168,11 +168,11 @@ Use `sudo apt`, making sure to only run the step on Linux:
 
 ## Quick links
 
-* Concepts, rate limits, etc: https://docs.github.com/en/actions/learn-github-actions
+* Concepts, rate limits, etc: https://docs.github.com/en/actions/writing-workflows
 
-* Syntax and fields reference: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+* Syntax and fields reference: https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
 
-* GitHub-hosted runners: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
+* GitHub-hosted runners: https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners
 
 ## Caveats
 
