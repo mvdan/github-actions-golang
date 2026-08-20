@@ -69,13 +69,13 @@ Note that these take effect for future steps in the job.
 
 #### How do I set up caching between builds?
 
-Since v4, [actions/setup-go](https://github.com/actions/setup-go) caches `GOCACHE`
-and `GOMODCACHE` automatically, using `go.sum` as the cache key.
+[actions/setup-go](https://github.com/actions/setup-go) caches `GOCACHE`
+and `GOMODCACHE` automatically, hashing `go.mod` into the cache key.
 You can turn that off via `cache: false`, and then you may also use your own
 custom caching, for example to only keep `GOMODCACHE`:
 
 ```yaml
-- uses: actions/cache@v3
+- uses: actions/cache@v6
   with:
     path: ~/go/pkg/mod
     key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
@@ -99,9 +99,9 @@ language](https://docs.github.com/en/actions/writing-workflows/choosing-what-you
 #### How do I set up a custom build matrix?
 
 You can [include extra matrix
-jobs](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#example-including-new-combinations),
+jobs](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrixinclude),
 and you can [exclude specific matrix
-jobs](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#example-excluding-configurations-from-a-matrix).
+jobs](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrixexclude).
 
 #### How do I run multiline scripts?
 
