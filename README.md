@@ -9,6 +9,8 @@ action](https://github.com/mvdan/github-actions-golang/actions):
 $ cat .github/workflows/test.yml
 on: [push, pull_request]
 name: Test
+permissions:
+  contents: read
 jobs:
   test:
     strategy:
@@ -34,6 +36,9 @@ Go versions on three operating systems.
 
 Each job has a number of `steps`, such as installing Go, or checking out the
 repository's code.
+
+The [permissions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions)
+limit the workflow's token to read-only access, which is all it needs.
 
 Note that `name` fields are optional.
 
