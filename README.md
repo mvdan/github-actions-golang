@@ -29,7 +29,7 @@ jobs:
 ## Summary
 
 Each workflow file has a number of jobs, which get run `on` specified events,
-and run concurrently with each other. You can have workflow [status badges](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/monitoring-workflows/adding-a-workflow-status-badge).
+and run concurrently with each other. You can have workflow [status badges](https://docs.github.com/en/actions/how-tos/monitor-workflows/add-a-status-badge).
 
 Each `job` runs on a configuration `matrix`. For example, we can test two major
 Go versions on three operating systems.
@@ -47,7 +47,7 @@ Note that `name` fields are optional.
 #### How do I set environment variables?
 
 They can be set up via `env` for an [entire
-workflow](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#env),
+workflow](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#env),
 a job, or for each step:
 
 ```yaml
@@ -59,7 +59,7 @@ jobs:
 
 #### How do I set environment variables at run-time?
 
-You can use [environment files](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#environment-files)
+You can use [environment files](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#environment-files)
 to set environment variables or add an element to `$PATH`. For example:
 
 ```yaml
@@ -88,13 +88,13 @@ custom caching, for example to only keep `GOMODCACHE`:
       ${{ runner.os }}-go-
 ```
 
-See [this guide](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows)
+See [this guide](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching)
 for more details.
 
 #### How do I run a step conditionally?
 
 You can use `if` conditionals, using their [custom expression
-language](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs):
+language](https://docs.github.com/en/actions/reference/workflows-and-actions/contexts):
 
 ```yaml
 - if: github.event_name == 'push' && matrix.os == 'ubuntu-latest'
@@ -122,11 +122,11 @@ jobs](https://docs.github.com/en/actions/reference/workflows-and-actions/workflo
 The biggest difference is the UI; workflow results are shown separately.
 Grouping jobs in workflows can also be useful if one wants to customize the
 workflow triggers, or to set up dependencies via
-[needs](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds).
+[needs](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idneeds).
 
 #### How do I set up a secret environment variable?
 
-Follow [these steps](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
+Follow [these steps](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets)
 to set up the secret in the repo's settings. After adding a secret like
 `FOO_SECRET`, use it on a step as follows:
 
@@ -173,11 +173,13 @@ Use `sudo apt`, making sure to only run the step on Linux:
 
 ## Quick links
 
-* Concepts, rate limits, etc: https://docs.github.com/en/actions/writing-workflows
+* Concepts: https://docs.github.com/en/actions/concepts
 
-* Syntax and fields reference: https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
+* Usage limits: https://docs.github.com/en/actions/reference/limits
 
-* GitHub-hosted runners: https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners
+* Syntax and fields reference: https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax
+
+* GitHub-hosted runners: https://docs.github.com/en/actions/concepts/runners/github-hosted-runners
 
 ## Caveats
 
