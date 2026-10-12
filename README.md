@@ -78,7 +78,7 @@ custom caching, for example to only keep `GOMODCACHE`:
 - uses: actions/cache@v6
   with:
     path: ~/go/pkg/mod
-    key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+    key: ${{ runner.os }}-go-${{ hashFiles('**/go.mod') }}
     restore-keys: |
       ${{ runner.os }}-go-
 ```
@@ -135,12 +135,12 @@ to set up the secret in the repo's settings. After adding a secret like
 
 It's possible to install modules from private GitHub repositories without using
 your own proxy. You'll need to add a
-[personal access token](https://github.com/settings/tokens) as a secret
+[personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
+with read access to the repositories' contents as a secret
 environment variable, as well as configure
 [GOPRIVATE](https://go.dev/ref/mod#private-modules).
-You can also directly used the token
-[provided by GitHub](https://docs.github.com/en/enterprise-cloud@latest/actions/security-for-github-actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow)
-in the workflow.
+Note that the [GITHUB_TOKEN](https://docs.github.com/en/actions/concepts/security/github_token)
+provided to workflows can only access the repository running the workflow.
 You can define anything as username in the URL, it is not taken into account by GitHub.
 
 ```yaml
@@ -152,7 +152,7 @@ You can define anything as username in the URL, it is not taken into account by 
 
 ```yaml
 env:
-  GOPRIVATE: "*.company.com"
+  GOPRIVATE: "github.com/yourorg"
 jobs:
   [...]
 ```
