@@ -32,7 +32,8 @@ Each workflow file has a number of jobs, which get run `on` specified events,
 and run concurrently with each other. You can have workflow [status badges](https://docs.github.com/en/actions/how-tos/monitor-workflows/add-a-status-badge).
 
 Each `job` runs on a configuration `matrix`. For example, we can test two major
-Go versions on three operating systems.
+Go versions on three operating systems. actions/setup-go also accepts
+`stable` and `oldstable` to always test the latest two Go versions.
 
 Each job has a number of `steps`, such as installing Go, or checking out the
 repository's code.
@@ -71,6 +72,8 @@ steps:
 ```
 
 Note that these take effect for future steps in the job.
+The default shell on Windows is PowerShell, which needs `$env:GITHUB_ENV`
+instead, or you can use `shell: bash` on the step.
 
 #### How do I set up caching between builds?
 
@@ -107,6 +110,9 @@ You can [include extra matrix
 jobs](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrixinclude),
 and you can [exclude specific matrix
 jobs](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrixexclude).
+By default, one failing job cancels the rest of the matrix; set
+[fail-fast](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategyfail-fast)
+to `false` to let them all finish.
 
 #### How do I run multiline scripts?
 
@@ -164,11 +170,11 @@ jobs:
 
 #### How do I install Linux packages?
 
-Use `sudo apt`, making sure to only run the step on Linux:
+Use `sudo apt-get`, making sure to only run the step on Linux:
 
 ```yaml
-- if: matrix.os == 'ubuntu-latest'
-  run: sudo apt update && sudo apt install -y --no-install-recommends mypackage
+- if: runner.os == 'Linux'
+  run: sudo apt-get update && sudo apt-get install -y --no-install-recommends mypackage
 ```
 
 ## Quick links
